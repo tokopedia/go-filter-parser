@@ -1,5 +1,5 @@
 # go-filter-parser
-Filter parser for Go.
+Parses filter query string to a Go struct object.
 
 # Example
 ```go
@@ -7,7 +7,9 @@ package main
 
 import (
     "fmt"
+    "log"
 
+    // will be exported as "filter"
     "github.com/tokopedia/go-filter-parser"
 )
 
@@ -42,3 +44,6 @@ func main() {
     fmt.Println("Value:    %s", f.Location.Value)
 }
 ```
+
+## Contributors
+Louis Andris
