@@ -20,6 +20,26 @@ const (
 	OperatorLessThanOrEqualTo
 )
 
+var operatorText map[int]string
+
+func init() {
+	operatorText = map[int]string{
+		OperatorEqualTo:              "==",
+		OperatorNotEqualTo:           "!=",
+		OperatorGreaterThan:          ">",
+		OperatorLessThan:             "<",
+		OperatorGreaterThanOrEqualTo: ">=",
+		OperatorLessThanOrEqualTo:    "<=",
+	}
+}
+
+func OperatorText(op int) string {
+	if v, ok := operatorText[op]; ok {
+		return v
+	}
+	return ""
+}
+
 type String struct {
 	Operator int
 	Value    string
@@ -110,9 +130,11 @@ func Parse(fs string, f Filter) error {
 }
 
 func mapFilter(fs string) (map[string]String, error) {
+	fs = strings.Replace(fs, "\\;", "{{FILTER_COMMA}}", -1)
 	fa := strings.Split(fs, ";")
 	tm := map[string]String{}
 	for _, v := range fa {
+		v = strings.Replace(v, "{{FILTER_COMMA}}", ";", -1)
 		kv := rxFilter.FindAllStringSubmatch(v, -1)
 		if len(kv) < 1 {
 			return nil, fmt.Errorf("unable to parse %q.", v)
