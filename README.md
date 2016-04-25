@@ -29,7 +29,7 @@ func (f *SearchShopFilter) FilterMap() filter.FilterMap {
 
 func main() {
     // assume this data is your filter query from query string
-    fq := `any_string==hello world\;foo\;bar;any_bool!=True;any_float==12345.6789;any_range!=5000..10000`
+    fq := `location=Jakarta;rating=3.5;gold_merchant_only=true`
 
     // create the filter object
     f := new(SearchShopFilter)
@@ -46,4 +46,4 @@ func main() {
 ```
 
 ## Contributors
-Louis Andris
+* [Louis Andris](https://github.com/ruizu)
