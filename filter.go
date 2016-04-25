@@ -47,6 +47,10 @@ type Filter interface {
 type FilterMap map[interface{}]string
 
 func Parse(fs string, f Filter) error {
+	if fs == "" {
+		return nil
+	}
+
 	tm, err := mapFilter(fs)
 	if err != nil {
 		return err
