@@ -30,11 +30,11 @@ func (f *SearchShopFilter) FilterMap() filter.FilterMap {
 func main() {
     // assume this data is your filter query from query string
     fq := `location=Jakarta;rating=3.5;gold_merchant_only=true`
-
+    separator := ";"
     // create the filter object
     f := new(SearchShopFilter)
     // parse the filter, it will return an error if unable to parse
-    if err := filter.Parse(fq, f); err != nil {
+    if err := filter.Parse(fq, separator, f); err != nil {
         // log.Fatal here just as an example, you can do anything with the error
         log.Fatal(err)
     }
@@ -47,3 +47,4 @@ func main() {
 
 ## Contributors
 * [Louis Andris](https://github.com/ruizu)
+* [Yuwono Bangun Nagoro](https://github.com/SurgicalSteel)
