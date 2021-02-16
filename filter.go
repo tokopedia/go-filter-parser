@@ -46,12 +46,12 @@ type Filter interface {
 
 type FilterMap map[interface{}]string
 
-func Parse(fs string, f Filter) error {
+func Parse(fs, sep string, f Filter) error {
 	if fs == "" {
 		return nil
 	}
 
-	tm, err := mapFilter(fs)
+	tm, err := mapFilter(fs, sep)
 	if err != nil {
 		return err
 	}
@@ -94,9 +94,9 @@ func Parse(fs string, f Filter) error {
 	return nil
 }
 
-func mapFilter(fs string) (map[string]String, error) {
+func mapFilter(fs, sep string) (map[string]String, error) {
 	fs = strings.Replace(fs, "\\;", "{{FILTER_SEMICOLON}}", -1)
-	fa := strings.Split(fs, ";")
+	fa := strings.Split(fs, sep)
 	tm := map[string]String{}
 	for _, v := range fa {
 		v = strings.Replace(v, "{{FILTER_SEMICOLON}}", ";", -1)

@@ -26,9 +26,9 @@ func (f *FilterAny) FilterMap() FilterMap {
 
 func TestParse(t *testing.T) {
 	fq := `any_string==hello world\;foo\;bar;any_string_slice==hello\:world:foo:bar;any_bool!=True;any_float==12345.6789;any_float_slice!=1:2.3:4:5.6:7890;any_float_range!=5000..10000`
-
+	sep := ";"
 	f := new(FilterAny)
-	if err := Parse(fq, f); err != nil {
+	if err := Parse(fq, sep, f); err != nil {
 		t.Error(err)
 	}
 
